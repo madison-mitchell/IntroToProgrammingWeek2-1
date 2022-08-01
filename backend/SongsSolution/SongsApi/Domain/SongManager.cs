@@ -1,4 +1,6 @@
-﻿namespace SongsApi.Domain;
+﻿using MongoDB.Driver.Linq;
+using MongoDB.Driver;
+namespace SongsApi.Domain;
 
 public class SongManager : IManageSongs
 {
@@ -25,5 +27,20 @@ public class SongManager : IManageSongs
 
         var songListItemResponse = new SongListItemResponse(song.Id.ToString(), song.Title, song.Artist, song.Album);
         return songListItemResponse;
+    }
+
+    public async Task<List<SongListItemResponse>> GetAllSongsAsync()
+    {
+        // LINQ
+        var query = _adapter.Songs.AsQueryable()
+             .Where(s => s.Archived == false)
+             .OrderBy(s => s.Title)
+             .ThenBy(s => s.Artist)
+             .Select(s => new SongListItemResponse(s.Id.ToString(), s.Title, s.Artist, s.Album));
+
+
+        var response = await query.ToListAsync();
+        return response;
+       
     }
 }

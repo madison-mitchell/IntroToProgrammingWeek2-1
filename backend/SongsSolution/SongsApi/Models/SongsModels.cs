@@ -8,7 +8,7 @@ public class CollectionResponse<T>
     public List<T> Data { get; set; } = new List<T>();
 }
 
-public record SongListItemResponse(string Id, string Title, string Artist, string Album);
+public record SongListItemResponse(string Id, string Title, string Artist, string? Album);
 
 
 public record SongCreateRequest : IValidatableObject
