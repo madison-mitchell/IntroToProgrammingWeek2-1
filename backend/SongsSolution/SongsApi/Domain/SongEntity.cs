@@ -1,8 +1,15 @@
-﻿namespace SongsApi.Domain;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace SongsApi.Domain;
 
 public class SongEntity
 {
-    public string Id { get; set; } = string.Empty;
+
+
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public ObjectId Id { get; set; }
     public string Title { get; set; } = string.Empty;
     public string Artist { get; set; } = string.Empty;
     public string? Album { get; set; }

@@ -23,7 +23,7 @@ public class SongManager : IManageSongs
         // 2. Give it to the Adapter.
         await _adapter.Songs.InsertOneAsync(song);
 
-        var songListItemResponse = new SongListItemResponse(song.Id, song.Title, song.Artist, song.Album);
+        var songListItemResponse = new SongListItemResponse(song.Id.ToString(), song.Title, song.Artist, song.Album);
         return songListItemResponse;
     }
 }
