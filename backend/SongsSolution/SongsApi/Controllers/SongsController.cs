@@ -4,7 +4,15 @@ namespace SongsApi.Controllers;
 
 [ApiController]
 public class SongsController : ControllerBase
+
 {
+    private readonly IManageSongs _songManager;
+
+    public SongsController(IManageSongs songManager)
+    {
+        _songManager = songManager;
+    }
+
     [HttpGet("/songs")]
     public ActionResult<CollectionResponse<SongListItemResponse>> GetSongs()
     {
@@ -16,16 +24,11 @@ public class SongsController : ControllerBase
     }
 
     [HttpPost("/songs")]
-    public ActionResult<SongListItemResponse> AddASong([FromBody] SongCreateRequest request)
+    public async Task<ActionResult<SongListItemResponse>> AddASongAsync([FromBody] SongCreateRequest request)
     {
-        // if it's good, add it to the database, etc.
-        var response = new SongListItemResponse(
-            new Random().Next(1, 1000).ToString(),
-            request.Title,
-            request.Artist,
-            request.Album);
 
-        // return a copy of the thing you added to the database, with a 201 (Created) status code.
+        SongListItemResponse response = await _songManager.AddSongAsync(request);
+       
         return StatusCode(201, response);
     }
 }
