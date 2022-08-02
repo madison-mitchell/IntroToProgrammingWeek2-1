@@ -7,6 +7,7 @@ import { MastheadComponent } from './components/masthead/masthead.component';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { CounterComponent } from './components/counter/counter.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     MastheadComponent,
     HomeComponent,
     AboutComponent,
-    NavigationComponent
+    NavigationComponent,
+    CounterComponent
   ],
   imports: [
     BrowserModule,
