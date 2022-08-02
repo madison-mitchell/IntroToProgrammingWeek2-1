@@ -1,0 +1,10 @@
+<h1 (click)="easterEgg()">Welcome to {{title}} </h1>
+
+<ol>
+  <li *ngFor="let item of todoList">You Have to Do this: {{item}} </li>
+</ol>
+
+<div>
+  <input type="text" #tacos>
+  <button (click)="addItem(tacos)">Add This To The List</button>
+</div>
