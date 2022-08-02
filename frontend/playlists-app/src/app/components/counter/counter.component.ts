@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { counterEvents } from 'src/app/state/actions/counter.actions';
 import { AppState, selectCounterCurrent } from '../../state';
 
 @Component({
@@ -22,11 +23,15 @@ export class CounterComponent implements OnInit  {
 
 
   increment() {
-
+    this.store.dispatch(counterEvents.increment());
   }
 
   decrement() {
+    this.store.dispatch(counterEvents.decrement());
+  }
 
+  reset() {
+    this.store.dispatch(counterEvents.reset());
   }
 
 }
