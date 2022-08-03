@@ -1,3 +1,28 @@
 <div class="feature-header">
   <p>Welcome to the Songs Feature!</p>
 </div>
+<div class="row">
+  <div class="col-3">
+    <ul class="nav nav-pills flex-column">
+
+      <li class="nav-item">
+        <a class="nav-link"
+          [routerLinkActive]="['active']"
+        routerLink="overview">Overview</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"
+          [routerLinkActive]="['active']"
+        routerLink="list">Your Song List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"
+          [routerLinkActive]="['active']"
+        routerLink="new">Add a Song</a>
+      </li>
+    </ul>
+  </div>
+  <div class="col">
+    <router-outlet></router-outlet>
+  </div>
+</div>
