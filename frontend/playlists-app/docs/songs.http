@@ -1,0 +1,13 @@
+GET http://localhost:3000/songs HTTP/1.1
+Accept: application/json
+
+### Add a Song
+
+POST http://localhost:3000/songs HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title":"Young Americans",
+  "artist": "David Bowie"
+}
