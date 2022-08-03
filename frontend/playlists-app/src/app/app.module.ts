@@ -14,6 +14,7 @@ import { reducers } from './state';
 import { CountByComponent } from './components/count-by/count-by.component';
 import { EffectsModule } from '@ngrx/effects';
 import { CounterEffects } from './state/effects/counter.effects';
+import { SongsModule } from './feature/songs/songs.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { CounterEffects } from './state/effects/counter.effects';
   ],
   imports: [
     BrowserModule,
+    SongsModule,
     AppRoutingModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument(),
