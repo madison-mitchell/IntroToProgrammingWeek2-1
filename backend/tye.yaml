@@ -1,0 +1,13 @@
+
+ingress:
+  - name: SongsIngress
+    bindings:
+      - port: 3000
+    rules:
+      - path: /api
+        service: songs-api
+
+services:
+
+  - name: songs-api
+    project: SongsSolution\SongsApi\SongsApi.csproj
