@@ -1,16 +1,8 @@
-<div class="card">
-  <div class="card-header">Song Title Here</div>
+<div class="card" *ngFor="let song of songs$ | async">
+  <div class="card-header">{{song.title}}</div>
   <div class="card-body">
-    <p>Song Title: Song Title Here</p>
-    <p>Artist: By Some Artist</p>
-    <p>Album: The Album Title</p>
-  </div>
-</div>
-<div class="card">
-  <div class="card-header">Song Title Here</div>
-  <div class="card-body">
-    <p>Song Title: Song Title Here</p>
-    <p>Artist: By Some Artist</p>
-    <p>Album information not available.</p>
+    <p>Song Title: {{song.title}}</p>
+    <p>Artist: {{song.artist}}</p>
+    <p>Album: {{song.album || "Unknown Album"}}</p>
   </div>
 </div>

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { selectSongList } from '../../state';
+import { SongEntity } from '../../state/reducers/song-list.reducer';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +11,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  songs$!: Observable<SongEntity[]>;
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
+    this.songs$ = this.store.select(selectSongList);
   }
 
 }
