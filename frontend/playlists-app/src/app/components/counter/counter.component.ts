@@ -14,7 +14,7 @@ export class CounterComponent implements OnInit  {
   current$! : Observable<number>;
 
   // TODO: WHAT THE HECK.
-  constructor(private store:Store<AppState>) {  }
+  constructor(private store:Store) {  }
 
   ngOnInit(): void {
 
