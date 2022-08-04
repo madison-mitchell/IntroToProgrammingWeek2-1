@@ -1,19 +1,24 @@
-<form [formGroup]="form" (ngSubmit)="allDone()">
+<form [formGroup]="form" (ngSubmit)="allDone(thisOne)">
   <div class="form-group">
     <label for="title">Title</label>
-    <input formControlName="title" type="text" class="form-control" id="title" autofocus>
+    <input #thisOne formControlName="title" type="text" class="form-control" id="title" autofocus>
+    <div class="alert alert-danger" *ngIf="title?.errors && (title?.touched || title?.dirty)">
+      <p *ngIf="title?.hasError('required')">We need a title, yo.</p>
+      <p *ngIf="title?.hasError('maxlength')">Too Long!.</p>
+    </div>
   </div>
   <div class="form-group">
     <label for="artist">Artist</label>
     <input formControlName="artist" type="text" class="form-control" id="artist">
+    <div class="alert alert-danger" *ngIf="artist?.errors && (artist?.touched || artist?.dirty)">
+      <p *ngIf="artist?.hasError('required')">We need a artist, yo.</p>
+
+    </div>
   </div>
   <div class="form-group">
     <label for="album">Album</label>
     <input formControlName="album" type="text" class="form-control" id="album">
   </div>
-  <button type="submit" class="btn btn-primary">Add This Song</button>
+  <button  type="submit" class="btn btn-primary">Add This Song</button>
 </form>
 
-<pre>
-  {{ form.value | json }}
-</pre>

@@ -32,12 +32,23 @@ export class NewComponent implements OnInit {
     })
   }
 
+  get title() { return this.form.controls.title; }
+  get artist() { return this.form.controls.artist; }
 
-  allDone() {
+  allDone(foci: HTMLInputElement) {
     if (this.form.valid) {
-      console.log(this.form.value);
+      const payload: SongCreateModel = this.form.value as SongCreateModel;
+      this.store.dispatch(SongEvents.newsongcreated({ payload }));
+
+      this.form.reset();
+      foci.focus();
+
     } else {
-      console.log("The form is invalid")
+      Object.keys(this.form.controls).forEach(field => {
+        const control = this.form.get(field);
+        control!.markAsTouched({ onlySelf: true })
+      })
+      // this.form.markAllAsTouched();
     }
 
   }
