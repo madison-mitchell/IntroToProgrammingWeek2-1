@@ -5,16 +5,24 @@ import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { map, tap } from "rxjs";
 import { appEvents } from "src/app/state/actions/app.actions";
+import { SongRequestCommands, SongRequestDocuments } from "../actions/song-requests.actions";
 import { SongCommands, SongEvents, SongsDocuments } from "../actions/songs.actions";
 
 
 @Injectable()
 export class SongFeatureEffects {
 
-  saveTheSongWhenCreated$ = createEffect(() => {
+  createASongRequestForNewSong$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(SongEvents.newsongcreated),
-      map(({ payload }) => SongCommands.add({ payload }))
+      map(({ payload }) => SongRequestCommands.create({ payload }))
+    )
+  })
+
+  sendTheRequestForNewSong$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SongRequestDocuments.song),
+      map((a) => SongCommands.add({ payload: a.payload, tempId: a.payload.id }))
     )
   })
   // when the application starts, time to load the songs.
@@ -27,7 +35,7 @@ export class SongFeatureEffects {
 
   goToListAfterAddingSong$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(SongsDocuments.song),
+      ofType(SongEvents.newsongcreated),
       tap(() => this.router.navigate(["/", "songs", "list"]))
     )
   }, { dispatch: false })

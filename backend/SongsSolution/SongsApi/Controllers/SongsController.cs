@@ -14,6 +14,7 @@ public class SongsController : ControllerBase
     }
 
     [HttpGet("/songs")]
+    [ResponseCache(Duration =5, Location = ResponseCacheLocation.Any)]
     public async Task<ActionResult<CollectionResponse<SongListItemResponse>>> GetSongs()
     {
         await Task.Delay(1000);
@@ -27,7 +28,10 @@ public class SongsController : ControllerBase
     [HttpPost("/songs")]
     public async Task<ActionResult<SongListItemResponse>> AddASongAsync([FromBody] SongCreateRequest request)
     {
-        
+        await Task.Delay(6000);
+        if(request.Title == "Butter") {
+            return BadRequest("That song is annoying");
+        }
         SongListItemResponse response = await _songManager.AddSongAsync(request);
        
         return StatusCode(201, response);

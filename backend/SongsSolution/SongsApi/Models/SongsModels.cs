@@ -23,7 +23,7 @@ public record SongCreateRequest : IValidatableObject
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
-       if(Title.ToLower() == "butter" && Artist.ToLower() == "bts")
+       if(Title.ToLower() == "xxx" && Artist.ToLower() == "bts")
         {
             yield return new ValidationResult("We don't like that song.", new string[] { "Title", "Artist"});
         }

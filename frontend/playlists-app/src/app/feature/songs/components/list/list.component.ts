@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription, tap } from 'rxjs';
 import { SongsListModel } from '../../models';
-import { selectSongList, selectSongListModel } from '../../state';
+import { selectRealSongList, selectSongListModel } from '../../state';
+import { SongCommands } from '../../state/actions/songs.actions';
 import { SongEntity } from '../../state/reducers/song-list.reducer';
 
 @Component({
@@ -14,7 +15,9 @@ export class ListComponent implements OnInit {
 
   model$!: Observable<SongsListModel>;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store) {
+    store.dispatch(SongCommands.load())
+  }
 
   ngOnInit(): void {
     this.model$ = this.store.select(selectSongListModel);

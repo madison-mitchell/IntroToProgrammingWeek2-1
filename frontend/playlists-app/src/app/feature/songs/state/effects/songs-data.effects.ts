@@ -13,12 +13,12 @@ export class SongsDataEffects {
   saveTheSong$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(SongCommands.add), // stop | SongsCommand.add
-      mergeMap(({ payload }) => this.client.post<SongEntity>('api/songs', payload)
+      mergeMap(({ payload, tempId }) => this.client.post<SongEntity>('api/songs', payload)
         .pipe(
-          map((payload) => SongsDocuments.song({ payload })),
+          map((payload) => SongsDocuments.song({ payload, tempId })),
           catchError((r) => {
             console.log('Got this error from the server', r);
-            return of(SongEvents.songerror({ payload, message: 'That did not work' }))
+            return of(SongEvents.songerror({ payload, message: 'That did not work', tempId }))
           })
         )
       )

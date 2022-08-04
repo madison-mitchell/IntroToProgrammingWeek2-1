@@ -4,7 +4,9 @@ import { SongEntity } from "../state/reducers/song-list.reducer";
 export type SongCreateModel = Omit<SongEntity, 'id'>
 
 
-export type SongListItemModel = Pick<SongEntity, "id" | "title" | "album" | "artist">
+export type SongListItemModel = Pick<SongEntity, "id" | "title" | "album" | "artist"> & {
+  isTemporary: boolean
+}
 export type SongsListModel = {
   loaded: boolean;
   numberOfSongs: number;

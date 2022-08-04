@@ -6,6 +6,9 @@
       <div class="card" *ngFor="let song of model.songs">
         <div class="card-header">{{song.title}}</div>
         <div class="card-body">
+          <div class="alert alert-info" *ngIf="song.isTemporary">
+            This song has been sent to the server... waiting
+          </div>
           <p>Song Title: {{song.title}}</p>
           <p>Artist: {{song.artist}}</p>
           <p>Album: {{song.album || "Unknown Album"}}</p>
