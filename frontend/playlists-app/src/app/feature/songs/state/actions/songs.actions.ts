@@ -1,10 +1,13 @@
 import { createActionGroup, emptyProps, props } from "@ngrx/store";
+import { SongCreateModel } from "../../models";
 import { SongEntity } from "../reducers/song-list.reducer";
 
 
 export const SongEvents = createActionGroup({
   source: 'Songs Feature - Songs Events',
-  events: {}
+  events: {
+    newSongCreated: props<{ payload: SongCreateModel }>()
+  }
 })
 
 

@@ -6,6 +6,7 @@ export interface SongEntity {
   title: string;
   artist: string;
   album?: string;
+
 }
 
 export interface SongListState extends EntityState<SongEntity> {

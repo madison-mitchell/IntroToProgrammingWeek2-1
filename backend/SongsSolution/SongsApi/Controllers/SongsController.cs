@@ -16,6 +16,7 @@ public class SongsController : ControllerBase
     [HttpGet("/songs")]
     public async Task<ActionResult<CollectionResponse<SongListItemResponse>>> GetSongs()
     {
+        //Thread.Sleep(3000);
         var response = new CollectionResponse<SongListItemResponse>();
 
         response.Data = await _songManager.GetAllSongsAsync();

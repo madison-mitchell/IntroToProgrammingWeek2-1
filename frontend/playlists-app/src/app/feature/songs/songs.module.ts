@@ -11,6 +11,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { EffectsModule } from '@ngrx/effects';
 import { SongFeatureEffects } from './state/effects/songs-feature.effects';
 import { SongsDataEffects } from './state/effects/songs-data.effects';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { SongsDataEffects } from './state/effects/songs-data.effects';
     SongsRoutingModule,
     CommonModule,
     HttpClientModule,
+    ReactiveFormsModule,
     StoreModule.forFeature(SONGS_FEATURE_NAME, reducers),
     EffectsModule.forFeature([SongFeatureEffects, SongsDataEffects])
   ]
