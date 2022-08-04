@@ -4,6 +4,7 @@ export const SONGS_FEATURE_NAME = 'songsFeature';
 
 import * as fromSongList from './reducers/song-list.reducer';
 import * as fromErrors from './reducers/errors.reducer';
+import { SongsListModel } from "../models";
 export interface SongsFeatureState {
   songList: fromSongList.SongListState,
   errors: fromErrors.ErrorsState
@@ -24,6 +25,11 @@ const selectSongsFeature = createFeatureSelector<SongsFeatureState>(SONGS_FEATUR
 const selectSongListBranch = createSelector(selectSongsFeature, f => f.songList);
 const selectErrorsBranch = createSelector(selectSongsFeature, f => f.errors);
 // 3. Helpers (optional)
+
+const selectSongsLoaded = createSelector(
+  selectSongListBranch,
+  b => b.loaded
+)
 const { selectAll: selectAllSongEntityArray } = fromSongList.adapter.getSelectors(selectSongListBranch);
 // 4. The selectors the components need.
 // SongEntity[]
@@ -31,6 +37,22 @@ const { selectAll: selectAllSongEntityArray } = fromSongList.adapter.getSelector
 export const selectSongList = createSelector(
   selectAllSongEntityArray,
   songs => songs
+)
+
+
+
+export const selectSongListModel = createSelector(
+  selectSongList,
+  selectSongsLoaded,
+  (songs, loaded) => {
+    return {
+      loaded,
+      numberOfSongs: songs.length,
+      numberWithAlbums: songs.filter(s => s.album).length,
+      numberWithoutAlbums: songs.filter(s => !s.album).length,
+      songs: songs
+    } as SongsListModel
+  }
 )
 
 
