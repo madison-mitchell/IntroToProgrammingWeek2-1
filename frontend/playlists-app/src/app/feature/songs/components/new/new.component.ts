@@ -30,6 +30,8 @@ export class NewComponent implements OnInit {
       }),
       album: new FormControl<string>('', { nonNullable: true })
     })
+
+
   }
 
   get title() { return this.form.controls.title; }

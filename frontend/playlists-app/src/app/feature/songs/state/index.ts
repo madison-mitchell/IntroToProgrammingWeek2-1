@@ -26,10 +26,6 @@ const selectSongListBranch = createSelector(selectSongsFeature, f => f.songList)
 const selectErrorsBranch = createSelector(selectSongsFeature, f => f.errors);
 // 3. Helpers (optional)
 
-const selectSongsLoaded = createSelector(
-  selectSongListBranch,
-  b => b.loaded
-)
 const { selectAll: selectAllSongEntityArray } = fromSongList.adapter.getSelectors(selectSongListBranch);
 // 4. The selectors the components need.
 // SongEntity[]
@@ -40,6 +36,10 @@ export const selectSongList = createSelector(
 )
 
 
+export const selectSongsLoaded = createSelector(
+  selectSongListBranch,
+  b => b.loaded
+)
 
 export const selectSongListModel = createSelector(
   selectSongList,

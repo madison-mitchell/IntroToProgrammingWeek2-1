@@ -16,7 +16,7 @@ public class SongsController : ControllerBase
     [HttpGet("/songs")]
     public async Task<ActionResult<CollectionResponse<SongListItemResponse>>> GetSongs()
     {
-        await Task.Delay(4000);
+        await Task.Delay(1000);
         var response = new CollectionResponse<SongListItemResponse>();
 
         response.Data = await _songManager.GetAllSongsAsync();
@@ -27,7 +27,7 @@ public class SongsController : ControllerBase
     [HttpPost("/songs")]
     public async Task<ActionResult<SongListItemResponse>> AddASongAsync([FromBody] SongCreateRequest request)
     {
-
+        
         SongListItemResponse response = await _songManager.AddSongAsync(request);
        
         return StatusCode(201, response);

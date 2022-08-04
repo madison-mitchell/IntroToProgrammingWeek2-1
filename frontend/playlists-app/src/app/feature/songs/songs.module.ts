@@ -13,6 +13,7 @@ import { SongFeatureEffects } from './state/effects/songs-feature.effects';
 import { SongsDataEffects } from './state/effects/songs-data.effects';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorDisplayComponent } from './components/error-display/error-display.component';
+import { CanActivateNew } from './can-activate-new.guard';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { ErrorDisplayComponent } from './components/error-display/error-display.
     ReactiveFormsModule,
     StoreModule.forFeature(SONGS_FEATURE_NAME, reducers),
     EffectsModule.forFeature([SongFeatureEffects, SongsDataEffects])
-  ]
+  ],
+  providers: [CanActivateNew]
 })
 export class SongsModule { }

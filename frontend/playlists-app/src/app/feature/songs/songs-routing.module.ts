@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { CanActivateNew } from "./can-activate-new.guard";
 import { ListComponent } from "./components/list/list.component";
 import { NewComponent } from "./components/new/new.component";
 import { OverviewComponent } from "./components/overview/overview.component";
@@ -21,7 +22,8 @@ const routes: Routes = [
       },
       {
         path: 'new',
-        component: NewComponent
+        component: NewComponent,
+        canActivate: [CanActivateNew]
       },
       {
         path: '**',

@@ -1,10 +1,11 @@
 // map events to commands
 
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { map } from "rxjs";
+import { map, tap } from "rxjs";
 import { appEvents } from "src/app/state/actions/app.actions";
-import { SongCommands, SongEvents } from "../actions/songs.actions";
+import { SongCommands, SongEvents, SongsDocuments } from "../actions/songs.actions";
 
 
 @Injectable()
@@ -23,5 +24,14 @@ export class SongFeatureEffects {
       map(() => SongCommands.load())
     )
   })
-  constructor(private actions$: Actions) { }
+
+  goToListAfterAddingSong$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SongsDocuments.song),
+      tap(() => this.router.navigate(["/", "songs", "list"]))
+    )
+  }, { dispatch: false })
+
+
+  constructor(private actions$: Actions, private router: Router) { }
 }

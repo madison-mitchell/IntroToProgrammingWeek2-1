@@ -16,7 +16,7 @@
           [routerLinkActive]="['active']"
         routerLink="list">Your Song List</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="loaded$ | async">
         <a class="nav-link"
           [routerLinkActive]="['active']"
         routerLink="new">Add a Song</a>

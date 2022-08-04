@@ -15,6 +15,7 @@ import { CountByComponent } from './components/count-by/count-by.component';
 import { EffectsModule } from '@ngrx/effects';
 import { CounterEffects } from './state/effects/counter.effects';
 import { SongsModule } from './feature/songs/songs.module';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SongsModule } from './feature/songs/songs.module';
     AppRoutingModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot([CounterEffects])
+    EffectsModule.forRoot([CounterEffects]),
+    StoreRouterConnectingModule.forRoot()
 
   ],
   providers: [],
