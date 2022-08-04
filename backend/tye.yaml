@@ -11,3 +11,12 @@ services:
 
   - name: songs-api
     project: SongsSolution\SongsApi\SongsApi.csproj
+    env:
+      - name: ConnectionStrings__mongodb
+        value: mongodb
+
+  - name: mongodb
+    external: true
+    bindings:
+      - port: 27017
+        connectionString: mongodb://admin:TokyoJoe138!@localhost:${port}
