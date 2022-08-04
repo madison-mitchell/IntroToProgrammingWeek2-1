@@ -12,6 +12,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { SongFeatureEffects } from './state/effects/songs-feature.effects';
 import { SongsDataEffects } from './state/effects/songs-data.effects';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ErrorDisplayComponent } from './components/error-display/error-display.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SongsComponent,
     OverviewComponent,
     ListComponent,
-    NewComponent
+    NewComponent,
+    ErrorDisplayComponent
   ],
   imports: [
     SongsRoutingModule,

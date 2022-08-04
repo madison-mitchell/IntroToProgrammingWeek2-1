@@ -6,7 +6,8 @@ import { SongEntity } from "../reducers/song-list.reducer";
 export const SongEvents = createActionGroup({
   source: 'Songs Feature - Songs Events',
   events: {
-    newSongCreated: props<{ payload: SongCreateModel }>()
+    newSongCreated: props<{ payload: SongCreateModel }>(),
+    songError: props<{ payload: SongCreateModel, message: string }>()
   }
 })
 

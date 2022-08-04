@@ -1,0 +1,5 @@
+<div class="alert alert-danger" *ngIf="(model$|async)?.hasErrors === true">
+  <p>There was an error:</p>
+  <p>{{(model$|async)?.error}}</p>
+  <button class="btn btn-danger" (click)="clear()">Clear</button>
+</div>
