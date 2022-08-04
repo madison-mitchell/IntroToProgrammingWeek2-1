@@ -20,6 +20,7 @@ export class ErrorDisplayComponent implements OnInit {
   }
 
   clear() {
+
     this.store.dispatch(ErrorCommands.clear());
   }
 }
