@@ -14,7 +14,8 @@ export const SongEvents = createActionGroup({
 export const SongCommands = createActionGroup({
   source: 'Songs Feature - Songs Commands',
   events: {
-    load: emptyProps()
+    load: emptyProps(),
+    add: props<{ payload: SongCreateModel }>()
 
   }
 })

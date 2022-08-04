@@ -44,11 +44,13 @@ export class NewComponent implements OnInit {
       foci.focus();
 
     } else {
-      Object.keys(this.form.controls).forEach(field => {
-        const control = this.form.get(field);
-        control!.markAsTouched({ onlySelf: true })
-      })
-      // this.form.markAllAsTouched();
+
+      console.log('invalid');
+      this.title.markAsTouched();
+      this.title.updateValueAndValidity();
+      this.artist.markAsTouched();
+      this.artist.updateValueAndValidity();
+      foci.focus();
     }
 
   }
