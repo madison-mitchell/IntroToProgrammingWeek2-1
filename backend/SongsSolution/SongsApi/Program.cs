@@ -31,8 +31,8 @@ builder.Services.AddHttpClient<OnCallDeveloperApiAdapter>(client =>
 {
     client.BaseAddress = new Uri(builder.Configuration.GetConnectionString("oncall"));
 })
-    .AddPolicyHandler(SrePolicies.GetRetryPolicy())
-    .AddPolicyHandler(SrePolicies.GetCircuitBreaker());
+    .AddPolicyHandler(SrePolicies.GetRetryPolicy()) // retry using this for each request.
+    .AddPolicyHandler(SrePolicies.GetCircuitBreaker()); // however after 3 of the above never get data, give it rest.
 
 // Domain Services
 builder.Services.AddTransient<IManageSongs, SongManager>();

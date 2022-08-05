@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oncall-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oncall-api
+  template:
+    metadata:
+      labels:
+        app: oncall-api
+    spec:
+      containers:
+      - name: oncall-api
+        image: on-call:v0.1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "125m"
+        ports:
+        - containerPort: 80
