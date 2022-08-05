@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: songs-api
+spec:
+  selector:
+    matchLabels:
+      app: songs-api
+  template:
+    metadata:
+      labels:
+        app: songs-api
+    spec:
+      containers:
+      - name: songs-api
+        image: songs-api:v0.1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "125m"
+        ports:
+        - containerPort: 80
+        env:
+          - name: ConnectionStrings__mongodb
+            value: "mongodb://admin:TokyoJoe138!@mongodb:27017"
+          - name: ConnectionStrings__oncall
+            value: "http://oncall-api-service"
