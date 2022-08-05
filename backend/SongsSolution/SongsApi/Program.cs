@@ -1,6 +1,7 @@
 
 
 using MongoDB.Bson.Serialization.Conventions;
+using SongsApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,12 @@ var mongoConnectionString = builder.Configuration.GetConnectionString("mongodb")
 var mongoDbSongsCollectionAdapter = new MongodbSongsCollectionAdapter(mongoConnectionString);
 builder.Services.AddSingleton(mongoDbSongsCollectionAdapter);
 
+builder.Services.AddHttpClient<OnCallDeveloperApiAdapter>(client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration.GetConnectionString("oncall"));
+})
+    .AddPolicyHandler(SrePolicies.GetRetryPolicy())
+    .AddPolicyHandler(SrePolicies.GetCircuitBreaker());
 
 // Domain Services
 builder.Services.AddTransient<IManageSongs, SongManager>();
