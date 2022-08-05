@@ -29,7 +29,7 @@ builder.Services.AddSingleton(mongoDbSongsCollectionAdapter);
 
 // Domain Services
 builder.Services.AddTransient<IManageSongs, SongManager>();
-
+builder.Services.AddTransient<IHomeManager, HomeManager>();
 // **** THE APPLICATION IS BUILT ****
 var app = builder.Build();
 
@@ -45,3 +45,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run(); // it starts running... 
+
+
